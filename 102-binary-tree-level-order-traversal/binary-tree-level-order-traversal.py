@@ -8,7 +8,7 @@ class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         res = []
         q = collections.deque()
-        q.append(root)
+        if root: q.append(root)
 
         while q:
             qlen = len(q) #no. of nodes in the level
@@ -16,12 +16,10 @@ class Solution:
             
             for _ in range(qlen):
                 node = q.popleft()
-                if node:
-                    level.append(node.val)
-                    if node.left: q.append(node.left)
-                    if node.right: q.append(node.right)
+                level.append(node.val)
+                if node.left: q.append(node.left)
+                if node.right: q.append(node.right)
                 
-            if level:
-                res.append(level)
+            res.append(level)
             
         return res
